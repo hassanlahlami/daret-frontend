@@ -1,0 +1,30 @@
+{
+  "Common": {
+    "appName": "Daret",
+    "tagline": "L'épargne tournante, en toute confiance."
+  },
+  "Home": {
+    "heading": "Bienvenue sur Daret",
+    "intro": "Créez et rejoignez des cercles d'épargne tournante (daret), avec une mise en relation et une planification de confiance. Les fonds transitent par un partenaire de paiement agréé — la plateforme ne détient jamais votre argent.",
+    "healthTitle": "État du service",
+    "healthChecking": "Vérification de la connexion à l'API…",
+    "healthUp": "API connectée",
+    "healthDown": "API injoignable"
+  },
+  "FeePreview": {
+    "position": "Position {position} sur {seatCount}",
+    "payoutDate": "Date de versement (estimée)",
+    "pot": "Montant du pot",
+    "serviceFee": "Frais de service",
+    "positionFee": "Frais de position",
+    "payoutBonus": "Bonus de versement",
+    "net": "Ajustement net",
+    "error": "Impossible de charger l'aperçu des frais"
+  },
+  "LocaleSwitcher": {
+    "label": "Langue",
+    "fr": "Français",
+    "ar": "العربية",
+    "darija": "Darija"
+  }
+}

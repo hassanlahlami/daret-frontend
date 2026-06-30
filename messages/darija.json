@@ -1,0 +1,30 @@
+{
+  "Common": {
+    "appName": "Daret",
+    "tagline": "Twfir b dawr, b kamel ttiqa."
+  },
+  "Home": {
+    "heading": "Mer7ba bik f Daret",
+    "intro": "Sawb w d5ol l groupat dyal twfir b dawr (daret), m3a matching w tnaddim mwthoq. Lflous kayduzo 3la chrik dyal lkhlas mrakhkhas — platforme 3omorha ma kat7tafed b flousek.",
+    "healthTitle": "7alat lkhidma",
+    "healthChecking": "Kanverifiw l'connexion m3a API…",
+    "healthUp": "API msolla",
+    "healthDown": "API ma9drnach nwslo liha"
+  },
+  "FeePreview": {
+    "position": "Lmartba {position} men {seatCount}",
+    "payoutDate": "Tarikh dyal lkhlas (taqdiri)",
+    "pot": "Qima dyal lflous",
+    "serviceFee": "Frais dyal khidma",
+    "positionFee": "Frais dyal lmartba",
+    "payoutBonus": "Bonus dyal lkhlas",
+    "net": "Safi",
+    "error": "Ma9dernach njibo l'aperçu dyal frais"
+  },
+  "LocaleSwitcher": {
+    "label": "Lorade",
+    "fr": "Français",
+    "ar": "العربية",
+    "darija": "Darija"
+  }
+}
