@@ -1,14 +1,20 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing, dirFor, type Locale } from '@/i18n/routing';
 import { Providers } from '@/app/providers';
+import { Nav } from '@/components/Nav';
+import { Footer } from '@/components/Footer';
 import '@/app/globals.css';
 
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
+
 export const metadata: Metadata = {
-  title: 'Daret',
-  description: 'Digital rotating-savings (ROSCA) platform for Morocco.'
+  title: 'Daret — épargne tournante digitale',
+  description:
+    'Digitalise la daret marocaine (ROSCA) : mise en relation, scoring, planification et confiance. Les fonds transitent par un partenaire de paiement agréé — la plateforme ne détient jamais votre argent.'
 };
 
 export function generateStaticParams() {
@@ -17,13 +23,11 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
-  params
+  params: { locale }
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
-
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
@@ -32,10 +36,16 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={dirFor(locale)}>
-      <body>
+    <html lang={locale} dir={dirFor(locale)} className={inter.variable}>
+      <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            <div className="flex min-h-screen flex-col">
+              <Nav />
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </div>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

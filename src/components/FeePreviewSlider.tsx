@@ -3,25 +3,18 @@
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { fetchFeePreview, type CreditTier } from '@/lib/api';
+import { api } from '@/lib/api-client';
 
 type Props = {
   circleId: string;
   seatCount: number;
-  /** MEMBER access token (wire from the auth session once the login UI exists). */
-  token: string;
-  tier?: CreditTier;
 };
 
 /**
- * Slot fee/payout preview slider (spec §14, FR-9). Lets a member scrub through
- * slot positions and see exactly what each slot costs or earns — service fee,
- * position fee, payout bonus, projected payout date — before committing.
- *
- * Ready to mount on the circle-detail / join page once the authenticated frontend
- * flow (login + session token) is built.
+ * Slot fee/payout preview slider (spec §14, FR-9). Scrub through slot positions
+ * and see what each slot costs or earns before committing.
  */
-export function FeePreviewSlider({ circleId, seatCount, token, tier }: Props) {
+export function FeePreviewSlider({ circleId, seatCount }: Props) {
   const t = useTranslations('FeePreview');
   const locale = useLocale();
   const [position, setPosition] = useState(1);
@@ -33,18 +26,15 @@ export function FeePreviewSlider({ circleId, seatCount, token, tier }: Props) {
     }).format(n);
 
   const { data, isError } = useQuery({
-    queryKey: ['feePreview', circleId, position, tier ?? 'neutral'],
-    queryFn: () => fetchFeePreview(circleId, position, token, tier),
-    placeholderData: keepPreviousData,
-    enabled: Boolean(token)
+    queryKey: ['feePreview', circleId, position],
+    queryFn: () => api.feePreview(circleId, position),
+    placeholderData: keepPreviousData
   });
 
   return (
     <div className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-white p-5">
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-medium">
-          {t('position', { position, seatCount })}
-        </span>
+        <span className="text-sm font-medium">{t('position', { position, seatCount })}</span>
         <input
           type="range"
           min={1}

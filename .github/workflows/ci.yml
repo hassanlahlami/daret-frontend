@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    name: Build (typecheck)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  e2e:
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    needs: [build]
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: daret
+          POSTGRES_USER: daret
+          POSTGRES_PASSWORD: daret
+        ports:
+          - '5432:5432'
+        options: >-
+          --health-cmd "pg_isready -U daret"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pull the backend repo to run the API the E2E tests need.
+      - name: Checkout backend
+        uses: actions/checkout@v4
+        with:
+          repository: hassanlahlami/daret-backend
+          path: backend-src
+          # For a private backend repo, add: token: ${{ secrets.BACKEND_REPO_TOKEN }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build & start seeded backend
+        working-directory: backend-src
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/daret
+          SPRING_DATASOURCE_USERNAME: daret
+          SPRING_DATASOURCE_PASSWORD: daret
+          DARET_SEED_ENABLED: 'true'
+          DARET_SCHEDULER_ENABLED: 'false'
+          DARET_AUTH_RATELIMIT_MAX: '100000'
+        run: |
+          mvn -B -DskipTests package
+          nohup java -jar target/*.jar > backend.log 2>&1 &
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:8080/api/v1/health >/dev/null; then echo "Backend up"; exit 0; fi
+            sleep 2
+          done
+          echo "Backend failed"; tail -n 100 backend.log; exit 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Run E2E
+        env:
+          E2E_API: http://localhost:8080
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report
+          if-no-files-found: ignore
