@@ -31,6 +31,9 @@ export function Nav() {
             {hasRole('COMPLIANCE_OFFICER') && (
               <Link href="/compliance" className={cn(linkClass, 'text-brand-700')}>{t('compliance')}</Link>
             )}
+            {hasRole('ADMIN') && (
+              <Link href="/admin" className={cn(linkClass, 'text-brand-700')}>{t('admin')}</Link>
+            )}
           </div>
         )}
 

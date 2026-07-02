@@ -108,6 +108,28 @@ export type AuditEventView = {
 };
 export type IntegrityReport = { valid: boolean; eventsChecked: number; brokenAtSeq: number | null };
 
+export type AdminOverview = {
+  circlesByStatus: Record<string, number>;
+  totalUsers: number;
+  platformRevenue: number;
+  platformExposure: number;
+  gapFilledSlots: number;
+};
+export type AdminCircle = {
+  id: string; name: string; status: CircleStatus; seatCount: number; filledSeats: number;
+  contributionAmount: number; shariaMode: boolean; ownerId: string; createdAt: string;
+};
+export type AdminUser = {
+  id: string; email: string | null; phone: string | null; roles: string[];
+  enabled: boolean; kycStatus: KycStatus | null;
+};
+export type FeeSchedule = {
+  id: string; name: string; serviceFee: number; baseFee: number;
+  redistributionShare: number; tierMultipliers: Record<string, number>;
+};
+export type PipelineResult = { collectionsIssued: number; payoutsIssued: number; eventsRelayed: number };
+export type SweepResult = { missedMarked: number; membersLate: number; membersDefaulted: number };
+
 // ---- Endpoints ----
 
 export const api = {
@@ -153,5 +175,27 @@ export const api = {
       body: { decision }
     }),
   amlFlags: () =>
-    apiFetch<{ userId: string; circleId: string; reason: string }[]>('/api/v1/admin/compliance/aml-flags')
+    apiFetch<{ userId: string; circleId: string; reason: string }[]>('/api/v1/admin/compliance/aml-flags'),
+
+  // ---- Admin console ----
+  adminOverview: () => apiFetch<AdminOverview>('/api/v1/admin/overview'),
+  adminCircles: (status?: CircleStatus) => {
+    const qs = status ? `?status=${status}` : '';
+    return apiFetch<Page<AdminCircle>>(`/api/v1/admin/circles${qs}`);
+  },
+  adminUsers: () => apiFetch<Page<AdminUser>>('/api/v1/admin/users'),
+  setUserEnabled: (id: string, enabled: boolean) =>
+    apiFetch<AdminUser>(`/api/v1/admin/users/${id}/enabled`, { body: { enabled } }),
+  cancelCircle: (id: string) => apiFetch<CircleView>(`/api/v1/circles/${id}/cancel`, { method: 'POST' }),
+
+  listFeeSchedules: () => apiFetch<FeeSchedule[]>('/api/v1/admin/fee-schedules'),
+  createFeeSchedule: (body: {
+    name: string; serviceFee: number; baseFee: number; redistributionShare: number;
+    tierMultipliers: Record<string, number>;
+  }) => apiFetch<FeeSchedule>('/api/v1/admin/fee-schedules', { body }),
+
+  runCycle: (asOf?: string) =>
+    apiFetch<PipelineResult>(`/api/v1/admin/ops/run-cycle${asOf ? `?asOf=${asOf}` : ''}`, { method: 'POST' }),
+  runDefaultSweep: (asOf?: string) =>
+    apiFetch<SweepResult>(`/api/v1/admin/ops/run-default-sweep${asOf ? `?asOf=${asOf}` : ''}`, { method: 'POST' })
 };

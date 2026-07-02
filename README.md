@@ -28,14 +28,15 @@ avec RTL soigné.
 | ☪️ **Sans intérêt / Sharia par défaut** | Slider d'aperçu des frais : chaque position montre coût/gain **avant** de s'engager. |
 | 🎯 **Scoring visible** | Jauge de score (A–E), badges de standing, compte à rebours d'échéance. |
 | 🛡️ **Conformité** | Timeline d'audit inviolable, file KYC, flags AML — console dédiée (role-gated). |
+| 🛠️ **Console admin** | Back-office ADMIN : KPIs (revenu, exposition), cercles, utilisateurs, barèmes, exploitation. |
 | 🌍 **fr / ar / darija** | i18n `next-intl`, RTL arabe via propriétés logiques Tailwind. |
 | 🔐 **Session** | JWT + refresh rotatif, garde de route par rôle, client API typé. |
 
 ## 📸 Aperçu
 
-| Tableau de bord | Console conformité | Sécurité & conformité |
+| Tableau de bord | Console conformité | Console admin |
 |---|---|---|
-| [![dashboard](./docs/img/dashboard.png)](./docs/img/dashboard.png) | [![compliance](./docs/img/compliance.png)](./docs/img/compliance.png) | [![securite](./docs/img/securite.png)](./docs/img/securite.png) |
+| [![dashboard](./docs/img/dashboard.png)](./docs/img/dashboard.png) | [![compliance](./docs/img/compliance.png)](./docs/img/compliance.png) | [![admin](./docs/img/admin.png)](./docs/img/admin.png) |
 
 ## 🚀 Démarrer
 
@@ -74,7 +75,8 @@ impayé→défaut) — **8/8**.
 
 Auth (login/register) · KYC (stepper + consentement CNDP) · Découverte · Assistant de
 création · Détail de cercle (slider de frais + adhésion) · Tableau de bord · Console
-conformité (role-gated) · Sécurité & conformité (publique) · États erreur/chargement/404.
+conformité (role-gated) · **Console admin** (KPIs, cercles, utilisateurs, barèmes, ops
+— role-gated) · Sécurité & conformité (publique) · États erreur/chargement/404.
 
 ---
 

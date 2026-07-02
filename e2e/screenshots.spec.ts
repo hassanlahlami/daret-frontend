@@ -29,6 +29,13 @@ test.describe('screenshots', () => {
     await page.waitForTimeout(900);
     await page.screenshot({ path: `${dir}/dashboard.png` });
 
+    // Admin console.
+    await page.evaluate(() => localStorage.clear());
+    await uiLogin(page, 'admin@daret.demo');
+    await page.goto('/fr/admin');
+    await page.waitForTimeout(900);
+    await page.screenshot({ path: `${dir}/admin.png`, fullPage: true });
+
     // Switch to the compliance officer for the console.
     await page.evaluate(() => localStorage.clear());
     await uiLogin(page, 'compliance@daret.demo');
