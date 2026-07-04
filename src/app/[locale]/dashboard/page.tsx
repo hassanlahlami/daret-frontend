@@ -1,10 +1,10 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { RequireAuth } from '@/components/RequireAuth';
 import { ScoreGauge } from '@/components/ScoreGauge';
-import { Card, Container, Eyebrow, StatusBadge } from '@/components/ui';
+import { Button, Card, Container, Eyebrow, StatusBadge } from '@/components/ui';
 import { api } from '@/lib/api-client';
 
 function daysUntil(dateIso: string): number {
@@ -20,6 +20,14 @@ function DashboardInner() {
   const obligations = useQuery({ queryKey: ['obligations'], queryFn: api.myObligations });
   const payouts = useQuery({ queryKey: ['payouts'], queryFn: api.myPayouts });
   const vouches = useQuery({ queryKey: ['vouches'], queryFn: api.myVouches });
+  const qc = useQueryClient();
+  const pay = useMutation({
+    mutationFn: (id: string) => api.payObligation(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['obligations'] });
+      qc.invalidateQueries({ queryKey: ['payouts'] });
+    }
+  });
 
   const money = (n: number) =>
     new Intl.NumberFormat(locale === 'darija' ? 'fr' : locale, { style: 'currency', currency: 'MAD' }).format(n);
@@ -73,6 +81,9 @@ function DashboardInner() {
                 <span className="font-medium">{money(c.amount)}</span>
                 <span className="text-slate-500">{dueLabel(c.dueDate)}</span>
                 <StatusBadge status={c.status} />
+                <Button size="sm" variant="outline" onClick={() => pay.mutate(c.id)} disabled={pay.isPending}>
+                  {t('payNow')}
+                </Button>
               </div>
             ))}
           </Card>
