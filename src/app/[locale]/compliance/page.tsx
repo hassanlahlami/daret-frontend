@@ -16,6 +16,11 @@ function ComplianceInner() {
   const integrity = useQuery({ queryKey: ['audit', 'verify'], queryFn: api.auditVerify });
   const queue = useQuery({ queryKey: ['kycQueue'], queryFn: api.kycQueue });
   const flags = useQuery({ queryKey: ['aml'], queryFn: api.amlFlags });
+  const disputes = useQuery({ queryKey: ['disputes'], queryFn: api.complianceDisputes });
+  const resolve = useMutation({
+    mutationFn: (id: string) => api.resolveDispute(id, 'Reviewed by compliance'),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['disputes'] })
+  });
 
   const decide = useMutation({
     mutationFn: ({ userId, decision }: { userId: string; decision: KycStatus }) =>
@@ -85,6 +90,24 @@ function ComplianceInner() {
             ))}
           </div>
         ) : <p className="text-sm text-slate-500">{t('noAml')}</p>}
+      </section>
+
+      {/* Disputes */}
+      <section className="mt-8">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">{t('disputes')}</h2>
+        {disputes.data?.length ? (
+          <Card className="divide-y divide-slate-100 p-0">
+            {disputes.data.map((d) => (
+              <div key={d.id} className="flex items-center justify-between px-5 py-3 text-sm">
+                <div>
+                  <p className="font-medium text-slate-700">{d.subject}</p>
+                  <p className="text-xs text-slate-500">{d.description}</p>
+                </div>
+                <Button size="sm" onClick={() => resolve.mutate(d.id)} disabled={resolve.isPending}>{t('resolve')}</Button>
+              </div>
+            ))}
+          </Card>
+        ) : <p className="text-sm text-slate-500">{t('noDisputes')}</p>}
       </section>
 
       {/* Audit chain */}

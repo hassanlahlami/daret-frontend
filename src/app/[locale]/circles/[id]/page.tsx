@@ -22,6 +22,9 @@ function CircleInner() {
   const [inviteCode, setInviteCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [newCode, setNewCode] = useState<string | null>(null);
+  const [dSubject, setDSubject] = useState('');
+  const [dBody, setDBody] = useState('');
+  const [disputeSent, setDisputeSent] = useState(false);
 
   const { data } = useQuery({ queryKey: ['circle', id], queryFn: () => api.getCircle(id) });
 
@@ -39,6 +42,10 @@ function CircleInner() {
   const vouch = useMutation({
     mutationFn: (userId: string) => api.vouchFor(userId),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['circle', id] }), onError: onErr
+  });
+  const dispute = useMutation({
+    mutationFn: () => api.raiseDispute(id, dSubject, dBody),
+    onSuccess: () => { setDisputeSent(true); setDSubject(''); setDBody(''); }, onError: onErr
   });
 
   if (!data) return null;
@@ -122,6 +129,22 @@ function CircleInner() {
       )}
 
       {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+
+      {/* Raise a dispute */}
+      <details className="mt-8 rounded-xl border border-slate-200 bg-white p-4 text-sm">
+        <summary className="cursor-pointer font-medium text-slate-700">{t('raiseDispute')}</summary>
+        {disputeSent ? (
+          <p className="mt-3 text-emerald-600">{t('disputeSent')}</p>
+        ) : (
+          <form onSubmit={(e) => { e.preventDefault(); setError(null); dispute.mutate(); }} className="mt-3 flex flex-col gap-2">
+            <input required placeholder={t('disputeSubject')} value={dSubject} onChange={(e) => setDSubject(e.target.value)}
+              className="rounded-xl border border-slate-300 px-3 py-2" />
+            <textarea required placeholder={t('disputeBody')} value={dBody} onChange={(e) => setDBody(e.target.value)}
+              className="rounded-xl border border-slate-300 px-3 py-2" rows={3} />
+            <Button size="sm" disabled={dispute.isPending} className="w-fit">{t('disputeSubmit')}</Button>
+          </form>
+        )}
+      </details>
     </Container>
   );
 }

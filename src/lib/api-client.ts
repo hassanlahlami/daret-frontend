@@ -179,6 +179,15 @@ export const api = {
   unreadCount: () => apiFetch<{ unread: number }>('/api/v1/me/notifications/unread-count'),
   markNotificationsRead: () => apiFetch<{ marked: number }>('/api/v1/me/notifications/read', { method: 'POST' }),
 
+  raiseDispute: (circleId: string | null, subject: string, description: string) =>
+    apiFetch<{ id: string }>('/api/v1/me/disputes', { body: { circleId, subject, description } }),
+  complianceDisputes: () =>
+    apiFetch<{ id: string; raiserUserId: string; circleId: string | null; subject: string; description: string; status: string }[]>(
+      '/api/v1/admin/compliance/disputes'
+    ),
+  resolveDispute: (id: string, resolution: string) =>
+    apiFetch<{ id: string; status: string }>(`/api/v1/admin/compliance/disputes/${id}/resolve`, { body: { resolution } }),
+
   auditChain: (limit = 100) => apiFetch<AuditEventView[]>(`/api/v1/admin/audit?limit=${limit}`),
   auditVerify: () => apiFetch<IntegrityReport>('/api/v1/admin/audit/verify'),
   kycQueue: () => apiFetch<{ userId: string; status: KycStatus }[]>('/api/v1/admin/compliance/kyc'),

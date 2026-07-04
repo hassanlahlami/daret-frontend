@@ -168,7 +168,12 @@
     "inviteCode": "Code dyal da3wa",
     "inviteShare": "Chark had code: {code}",
     "vouch": "Wessi",
-    "vouched": "Mwessi ✓"
+    "vouched": "Mwessi ✓",
+    "raiseDispute": "Bellagh 3la mochkil",
+    "disputeSubject": "Mawdo3",
+    "disputeBody": "Wsef lmochkil",
+    "disputeSubmit": "Sift",
+    "disputeSent": "Tsift lmochkil — conformité ghadi tchofoh."
   },
   "Dashboard": {
     "title": "Tableau de bord",
@@ -198,6 +203,9 @@
     "reject": "Rfud",
     "aml": "Tanbihat AML",
     "noAml": "Ma kayninch tanbihat.",
+    "disputes": "Niza3at",
+    "resolve": "7ell",
+    "noDisputes": "Ma kaynin niza3at.",
     "auditChain": "Silsilat l'audit",
     "seq": "Séq.",
     "actor": "Fa3il",

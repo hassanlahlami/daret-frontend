@@ -168,7 +168,12 @@
     "inviteCode": "Code d'invitation",
     "inviteShare": "Partagez ce code : {code}",
     "vouch": "Recommander",
-    "vouched": "Recommandé ✓"
+    "vouched": "Recommandé ✓",
+    "raiseDispute": "Signaler un litige",
+    "disputeSubject": "Objet",
+    "disputeBody": "Décrivez le problème",
+    "disputeSubmit": "Envoyer",
+    "disputeSent": "Litige envoyé — la conformité l'examinera."
   },
   "Dashboard": {
     "title": "Tableau de bord",
@@ -198,6 +203,9 @@
     "reject": "Rejeter",
     "aml": "Signalements AML",
     "noAml": "Aucun signalement.",
+    "disputes": "Litiges",
+    "resolve": "Résoudre",
+    "noDisputes": "Aucun litige ouvert.",
     "auditChain": "Chaîne d'audit",
     "seq": "Séq.",
     "actor": "Acteur",

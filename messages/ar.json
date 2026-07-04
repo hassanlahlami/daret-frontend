@@ -168,7 +168,12 @@
     "inviteCode": "رمز الدعوة",
     "inviteShare": "شارك هذا الرمز: {code}",
     "vouch": "أوصي",
-    "vouched": "موصى ✓"
+    "vouched": "موصى ✓",
+    "raiseDispute": "الإبلاغ عن نزاع",
+    "disputeSubject": "الموضوع",
+    "disputeBody": "صف المشكلة",
+    "disputeSubmit": "إرسال",
+    "disputeSent": "تم إرسال النزاع — ستراجعه جهة الامتثال."
   },
   "Dashboard": {
     "title": "لوحة التحكّم",
@@ -198,6 +203,9 @@
     "reject": "رفض",
     "aml": "تنبيهات مكافحة غسل الأموال",
     "noAml": "لا توجد تنبيهات.",
+    "disputes": "النزاعات",
+    "resolve": "حلّ",
+    "noDisputes": "لا توجد نزاعات مفتوحة.",
     "auditChain": "سلسلة التدقيق",
     "seq": "التسلسل",
     "actor": "الفاعل",
