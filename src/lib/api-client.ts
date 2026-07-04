@@ -80,6 +80,7 @@ export type CircleView = {
   cycleLengthDays: number;
   status: CircleStatus;
   shariaMode: boolean;
+  inviteOnly: boolean;
   ownerId: string;
   createdAt: string;
 };
@@ -150,9 +151,13 @@ export const api = {
   createCircle: (body: {
     name: string; contributionAmount: number; seatCount: number;
     cycleLengthDays: number; shariaMode: boolean; ownerSlotPreference?: SlotPreference;
+    inviteOnly?: boolean;
   }) => apiFetch<CircleView>('/api/v1/circles', { body }),
-  joinCircle: (id: string, slotPreference: SlotPreference) =>
-    apiFetch<CircleView>(`/api/v1/circles/${id}/join`, { body: { slotPreference } }),
+  joinCircle: (id: string, slotPreference: SlotPreference, inviteCode?: string) =>
+    apiFetch<CircleView>(`/api/v1/circles/${id}/join`, { body: { slotPreference, inviteCode } }),
+  createInvite: (id: string) => apiFetch<{ code: string }>(`/api/v1/circles/${id}/invites`, { method: 'POST' }),
+  vouchFor: (userId: string) => apiFetch<{ ok: boolean }>(`/api/v1/me/vouch/${userId}`, { method: 'POST' }),
+  myVouches: () => apiFetch<{ received: number }>('/api/v1/me/vouches'),
   activateCircle: (id: string) => apiFetch<unknown>(`/api/v1/circles/${id}/activate`, { method: 'POST' }),
   feePreview: (id: string, position: number, tier?: CreditTier) => {
     const qs = new URLSearchParams({ position: String(position) });

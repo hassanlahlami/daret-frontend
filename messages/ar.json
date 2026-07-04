@@ -142,6 +142,7 @@
     "cycle": "مدّة الدورة (أيام)",
     "sharia": "الوضع الشرعي (بدون رسوم مرتبة)",
     "ownerPref": "تفضيلك للمرتبة",
+    "inviteOnly": "بدعوة (مجموعة خاصة)",
     "submit": "إنشاء"
   },
   "Circle": {
@@ -155,7 +156,13 @@
     "activate": "تفعيل",
     "owner": "المنظّم",
     "previewTitle": "معاينة الرسوم / الصرف",
-    "unassigned": "—"
+    "unassigned": "—",
+    "private": "خاص",
+    "createInvite": "إنشاء دعوة",
+    "inviteCode": "رمز الدعوة",
+    "inviteShare": "شارك هذا الرمز: {code}",
+    "vouch": "أوصي",
+    "vouched": "موصى ✓"
   },
   "Dashboard": {
     "title": "لوحة التحكّم",
@@ -163,6 +170,7 @@
     "tier": "الفئة",
     "obligations": "المساهمات القادمة",
     "payouts": "مدفوعاتي",
+    "vouches": "التوصيات المستلمة",
     "none": "لا شيء حاليًا.",
     "next": "التالية",
     "dueIn": "خلال {n} ي",

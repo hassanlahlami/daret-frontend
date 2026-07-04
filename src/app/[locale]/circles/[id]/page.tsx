@@ -19,7 +19,9 @@ function CircleInner() {
   const id = String(params.id);
 
   const [pref, setPref] = useState<SlotPreference>('FLEXIBLE');
+  const [inviteCode, setInviteCode] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [newCode, setNewCode] = useState<string | null>(null);
 
   const { data } = useQuery({ queryKey: ['circle', id], queryFn: () => api.getCircle(id) });
 
@@ -27,15 +29,16 @@ function CircleInner() {
     qc.invalidateQueries({ queryKey: ['circle', id] });
     qc.invalidateQueries({ queryKey: ['circles'] });
   };
+  const onErr = (e: unknown) => setError(e instanceof ApiError ? e.message : 'error');
   const join = useMutation({
-    mutationFn: () => api.joinCircle(id, pref),
-    onSuccess: invalidate,
-    onError: (e) => setError(e instanceof ApiError ? e.message : 'error')
+    mutationFn: () => api.joinCircle(id, pref, inviteCode || undefined),
+    onSuccess: invalidate, onError: onErr
   });
-  const activate = useMutation({
-    mutationFn: () => api.activateCircle(id),
-    onSuccess: invalidate,
-    onError: (e) => setError(e instanceof ApiError ? e.message : 'error')
+  const activate = useMutation({ mutationFn: () => api.activateCircle(id), onSuccess: invalidate, onError: onErr });
+  const invite = useMutation({ mutationFn: () => api.createInvite(id), onSuccess: (r) => setNewCode(r.code), onError: onErr });
+  const vouch = useMutation({
+    mutationFn: (userId: string) => api.vouchFor(userId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['circle', id] }), onError: onErr
   });
 
   if (!data) return null;
@@ -52,12 +55,23 @@ function CircleInner() {
       <div className="flex items-center gap-3">
         <h1 className="text-2xl font-bold text-slate-900">{circle.name}</h1>
         <StatusBadge status={circle.status} />
+        {circle.inviteOnly && <Badge tone="amber">{t('private')}</Badge>}
       </div>
       <div className="mt-2 flex flex-wrap gap-2 text-xs">
         <Badge tone="slate">{circle.filledSeats}/{circle.seatCount} {t('members')}</Badge>
         <Badge tone="slate">{money(circle.contributionAmount)}</Badge>
         {circle.shariaMode && <Badge tone="green">Sharia</Badge>}
       </div>
+
+      {/* Owner can mint invite codes for a private circle */}
+      {isMember && forming && (
+        <div className="mt-4 flex items-center gap-3">
+          <Button size="sm" variant="outline" onClick={() => { setError(null); invite.mutate(); }} disabled={invite.isPending}>
+            {t('createInvite')}
+          </Button>
+          {newCode && <span className="font-mono text-sm text-brand-700">{t('inviteShare', { code: newCode })}</span>}
+        </div>
+      )}
 
       <section className="mt-6">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-400">{t('members')}</h2>
@@ -68,6 +82,11 @@ function CircleInner() {
               <span className="text-slate-500">{t('seat')}: {m.slotPosition ?? t('unassigned')}</span>
               <Badge tone="slate">{m.slotPreference}</Badge>
               <StatusBadge status={m.standing} />
+              {m.userId !== session?.userId && (
+                <Button size="sm" variant="ghost" onClick={() => { setError(null); vouch.mutate(m.userId); }} disabled={vouch.isPending}>
+                  {t('vouch')}
+                </Button>
+              )}
             </div>
           ))}
         </Card>
@@ -77,6 +96,10 @@ function CircleInner() {
         <section className="mt-8 flex flex-col gap-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-400">{t('previewTitle')}</h2>
           <FeePreviewSlider circleId={id} seatCount={circle.seatCount} />
+          {circle.inviteOnly && (
+            <input value={inviteCode} onChange={(e) => setInviteCode(e.target.value)} placeholder={t('inviteCode')}
+              className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-mono" />
+          )}
           <div className="flex items-center gap-3">
             <select value={pref} onChange={(e) => setPref(e.target.value as SlotPreference)}
               className="rounded-xl border border-slate-300 px-3 py-2 text-sm">
@@ -84,16 +107,12 @@ function CircleInner() {
               <option value="FLEXIBLE">FLEXIBLE</option>
               <option value="LATE">LATE</option>
             </select>
-            <Button onClick={() => { setError(null); join.mutate(); }} disabled={join.isPending}>
-              {t('join')}
-            </Button>
+            <Button onClick={() => { setError(null); join.mutate(); }} disabled={join.isPending}>{t('join')}</Button>
           </div>
         </section>
       )}
 
-      {isMember && (
-        <p className="mt-6 rounded-xl bg-emerald-50 px-4 py-2 text-sm text-emerald-700">{t('joined')}</p>
-      )}
+      {isMember && <p className="mt-6 rounded-xl bg-emerald-50 px-4 py-2 text-sm text-emerald-700">{t('joined')}</p>}
 
       {forming && isOwner && (
         <Button variant="outline" className="mt-6"

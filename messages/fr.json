@@ -142,6 +142,7 @@
     "cycle": "Durée du cycle (jours)",
     "sharia": "Mode Sharia (sans frais de position)",
     "ownerPref": "Votre préférence de position",
+    "inviteOnly": "Sur invitation (cercle privé)",
     "submit": "Créer"
   },
   "Circle": {
@@ -155,7 +156,13 @@
     "activate": "Activer",
     "owner": "Organisateur",
     "previewTitle": "Aperçu des frais / versement",
-    "unassigned": "—"
+    "unassigned": "—",
+    "private": "Privé",
+    "createInvite": "Créer une invitation",
+    "inviteCode": "Code d'invitation",
+    "inviteShare": "Partagez ce code : {code}",
+    "vouch": "Recommander",
+    "vouched": "Recommandé ✓"
   },
   "Dashboard": {
     "title": "Tableau de bord",
@@ -163,6 +170,7 @@
     "tier": "Palier",
     "obligations": "Contributions à venir",
     "payouts": "Mes versements",
+    "vouches": "Recommandations reçues",
     "none": "Rien pour le moment.",
     "next": "Prochaine",
     "dueIn": "dans {n} j",

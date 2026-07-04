@@ -17,6 +17,7 @@ function CreateInner() {
   const [seats, setSeats] = useState(4);
   const [cycle, setCycle] = useState(30);
   const [sharia, setSharia] = useState(true);
+  const [inviteOnly, setInviteOnly] = useState(false);
   const [pref, setPref] = useState<SlotPreference>('FLEXIBLE');
   const [error, setError] = useState<string | null>(null);
 
@@ -24,7 +25,7 @@ function CreateInner() {
     mutationFn: () =>
       api.createCircle({
         name, contributionAmount: amount, seatCount: seats,
-        cycleLengthDays: cycle, shariaMode: sharia, ownerSlotPreference: pref
+        cycleLengthDays: cycle, shariaMode: sharia, ownerSlotPreference: pref, inviteOnly
       }),
     onSuccess: (c) => router.replace(`/circles/${c.id}`),
     onError: (e) => setError(e instanceof ApiError ? e.message : 'error')
@@ -56,6 +57,10 @@ function CreateInner() {
           <label className="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2.5 text-sm">
             <input type="checkbox" checked={sharia} onChange={(e) => setSharia(e.target.checked)} />
             {t('sharia')}
+          </label>
+          <label className="flex items-center gap-2 rounded-xl bg-slate-50 px-3 py-2.5 text-sm">
+            <input type="checkbox" checked={inviteOnly} onChange={(e) => setInviteOnly(e.target.checked)} />
+            {t('inviteOnly')}
           </label>
           <label className={label}>{t('ownerPref')}
             <select value={pref} onChange={(e) => setPref(e.target.value as SlotPreference)} className={field}>

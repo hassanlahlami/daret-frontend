@@ -19,6 +19,7 @@ function DashboardInner() {
   const score = useQuery({ queryKey: ['score'], queryFn: api.myScore });
   const obligations = useQuery({ queryKey: ['obligations'], queryFn: api.myObligations });
   const payouts = useQuery({ queryKey: ['payouts'], queryFn: api.myPayouts });
+  const vouches = useQuery({ queryKey: ['vouches'], queryFn: api.myVouches });
 
   const money = (n: number) =>
     new Intl.NumberFormat(locale === 'darija' ? 'fr' : locale, { style: 'currency', currency: 'MAD' }).format(n);
@@ -41,6 +42,7 @@ function DashboardInner() {
             <p className="text-sm text-slate-500">{t('score')}</p>
             <p className="text-lg font-semibold text-slate-800">{score.data?.score ?? '—'} / 1000</p>
             <p className="mt-1 text-sm text-slate-500">{t('tier')}: <span className="font-semibold">{score.data?.tier ?? '—'}</span></p>
+            <p className="mt-1 text-sm text-slate-500">{t('vouches')}: <span className="font-semibold">{vouches.data?.received ?? 0}</span></p>
           </div>
         </Card>
 
