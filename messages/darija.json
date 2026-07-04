@@ -137,6 +137,10 @@
     "cadence": "Wtira",
     "days": "{n} iyam",
     "sharia": "Mode Sharia",
+    "nonSharia": "Machi Sharia",
+    "all": "Kollchi",
+    "min": "Min",
+    "max": "Max",
     "view": "Chof",
     "create": "Sawb group"
   },

@@ -137,6 +137,10 @@
     "cadence": "Cadence",
     "days": "{n} jours",
     "sharia": "Mode Sharia",
+    "nonSharia": "Hors Sharia",
+    "all": "Tous",
+    "min": "Min",
+    "max": "Max",
     "view": "Voir",
     "create": "Créer un cercle"
   },

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@/i18n/navigation';
@@ -11,14 +12,28 @@ import { api } from '@/lib/api-client';
 function DiscoverInner() {
   const t = useTranslations('Discover');
   const locale = useLocale();
-  const { data, isLoading } = useQuery({ queryKey: ['circles'], queryFn: () => api.discoverCircles() });
+  const [sharia, setSharia] = useState('');
+  const [minAmount, setMinAmount] = useState('');
+  const [maxAmount, setMaxAmount] = useState('');
+
+  const params: Record<string, string> = {};
+  if (sharia) params.shariaMode = sharia;
+  if (minAmount) params.minAmount = minAmount;
+  if (maxAmount) params.maxAmount = maxAmount;
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['circles', params],
+    queryFn: () => api.discoverCircles(params)
+  });
 
   const money = (n: number) =>
     new Intl.NumberFormat(locale === 'darija' ? 'fr' : locale, { style: 'currency', currency: 'MAD' }).format(n);
 
+  const field = 'rounded-xl border border-slate-300 px-3 py-2 text-sm';
+
   return (
     <Container className="max-w-4xl py-10">
-      <div className="mb-8 flex items-end justify-between">
+      <div className="mb-6 flex items-end justify-between">
         <div>
           <Eyebrow>{t('title')}</Eyebrow>
           <h1 className="mt-1 text-2xl font-bold text-slate-900">{t('title')}</h1>
@@ -26,6 +41,19 @@ function DiscoverInner() {
         <Link href="/circles/new" className={buttonClass('primary')}>
           {t('create')} <IconArrow className="h-4 w-4 rtl:rotate-180" />
         </Link>
+      </div>
+
+      {/* Filters */}
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <select value={sharia} onChange={(e) => setSharia(e.target.value)} className={field} aria-label={t('sharia')}>
+          <option value="">{t('all')}</option>
+          <option value="true">{t('sharia')}</option>
+          <option value="false">{t('nonSharia')}</option>
+        </select>
+        <input type="number" min={0} value={minAmount} onChange={(e) => setMinAmount(e.target.value)}
+          placeholder={t('min')} className={`${field} w-28`} />
+        <input type="number" min={0} value={maxAmount} onChange={(e) => setMaxAmount(e.target.value)}
+          placeholder={t('max')} className={`${field} w-28`} />
       </div>
 
       {!isLoading && (data?.content.length ?? 0) === 0 && (
@@ -45,6 +73,7 @@ function DiscoverInner() {
                 <Badge tone="slate">{money(c.contributionAmount)}</Badge>
                 <Badge tone="slate">{t('days', { n: c.cycleLengthDays })}</Badge>
                 {c.shariaMode && <Badge tone="green">{t('sharia')}</Badge>}
+                {c.inviteOnly && <Badge tone="amber">🔒</Badge>}
               </div>
               <div>
                 <div className="mb-1 flex justify-between text-xs text-slate-500">
