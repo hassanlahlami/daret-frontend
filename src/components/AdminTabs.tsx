@@ -6,6 +6,7 @@ import { cn } from '@/lib/cn';
 
 const tabs = [
   { href: '/admin', key: 'overview' },
+  { href: '/admin/analytics', key: 'analytics' },
   { href: '/admin/circles', key: 'circles' },
   { href: '/admin/users', key: 'users' },
   { href: '/admin/fees', key: 'fees' },

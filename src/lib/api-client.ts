@@ -128,6 +128,14 @@ export type FeeSchedule = {
   id: string; name: string; serviceFee: number; baseFee: number;
   redistributionShare: number; tierMultipliers: Record<string, number>;
 };
+export type AdminAnalytics = {
+  contributions: Record<string, number>;
+  payouts: Record<string, number>;
+  openDisputes: number;
+  openAmlFlags: number;
+  totalVouches: number;
+  newCirclesPerWeek: { label: string; count: number }[];
+};
 export type PipelineResult = { collectionsIssued: number; payoutsIssued: number; eventsRelayed: number };
 export type SweepResult = { missedMarked: number; membersLate: number; membersDefaulted: number };
 
@@ -202,6 +210,7 @@ export const api = {
 
   // ---- Admin console ----
   adminOverview: () => apiFetch<AdminOverview>('/api/v1/admin/overview'),
+  adminAnalytics: () => apiFetch<AdminAnalytics>('/api/v1/admin/analytics'),
   adminCircles: (status?: CircleStatus) => {
     const qs = status ? `?status=${status}` : '';
     return apiFetch<Page<AdminCircle>>(`/api/v1/admin/circles${qs}`);

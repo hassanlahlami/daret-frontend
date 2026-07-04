@@ -19,6 +19,10 @@ test('admin sees the overview KPIs and can browse circles/users/ops', async ({ p
 
   await page.goto('/fr/admin/ops');
   await expect(page.getByText('Lancer le cycle')).toBeVisible();
+
+  await page.goto('/fr/admin/analytics');
+  await expect(page.getByText('Nouveaux cercles / semaine')).toBeVisible();
+  await expect(page.getByText('Recommandations')).toBeVisible();
 });
 
 test('a non-admin member is denied the admin console', async ({ page }) => {
