@@ -139,7 +139,8 @@ export const api = {
     apiFetch<TokenResponse>('/api/v1/auth/register', { body: { email, password }, auth: false }),
 
   getKyc: () => apiFetch<KycStatusResponse>('/api/v1/kyc'),
-  submitKyc: (partnerRef: string) => apiFetch<KycStatusResponse>('/api/v1/kyc', { body: { partnerRef } }),
+  submitKyc: (partnerRef: string, consent: boolean) =>
+    apiFetch<KycStatusResponse>('/api/v1/kyc', { body: { partnerRef, consent } }),
 
   discoverCircles: (params: Record<string, string> = {}) => {
     const qs = new URLSearchParams(params).toString();
@@ -175,7 +176,9 @@ export const api = {
       body: { decision }
     }),
   amlFlags: () =>
-    apiFetch<{ userId: string; circleId: string; reason: string }[]>('/api/v1/admin/compliance/aml-flags'),
+    apiFetch<{ id: string; userId: string; circleId: string | null; type: string; severity: string; reason: string }[]>(
+      '/api/v1/admin/compliance/aml-flags'
+    ),
 
   // ---- Admin console ----
   adminOverview: () => apiFetch<AdminOverview>('/api/v1/admin/overview'),

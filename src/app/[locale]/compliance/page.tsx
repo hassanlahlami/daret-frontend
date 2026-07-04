@@ -76,9 +76,9 @@ function ComplianceInner() {
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">{t('aml')}</h2>
         {flags.data?.length ? (
           <div className="flex flex-col gap-2">
-            {flags.data.map((f, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm">
-                <Badge tone="amber">AML</Badge>
+            {flags.data.map((f) => (
+              <div key={f.id} className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm">
+                <Badge tone={f.severity === 'HIGH' ? 'red' : 'amber'}>{f.type}</Badge>
                 <span className="font-mono text-xs text-slate-600">{f.userId.slice(0, 8)}</span>
                 <span className="text-slate-600">{f.reason}</span>
               </div>

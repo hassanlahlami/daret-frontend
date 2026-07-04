@@ -18,7 +18,7 @@ function KycInner() {
 
   const { data } = useQuery({ queryKey: ['kyc'], queryFn: api.getKyc });
   const submit = useMutation({
-    mutationFn: () => api.submitKyc(partnerRef),
+    mutationFn: () => api.submitKyc(partnerRef, consent),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['kyc'] })
   });
 
