@@ -173,6 +173,8 @@
     "inviteShare": "شارك هذا الرمز: {code}",
     "vouch": "أوصي",
     "vouched": "موصى ✓",
+    "payoutOrder": "ترتيب الصرف",
+    "cycle": "الدورة",
     "raiseDispute": "الإبلاغ عن نزاع",
     "disputeSubject": "الموضوع",
     "disputeBody": "صف المشكلة",

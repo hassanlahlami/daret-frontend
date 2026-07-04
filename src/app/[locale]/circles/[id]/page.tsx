@@ -27,6 +27,11 @@ function CircleInner() {
   const [disputeSent, setDisputeSent] = useState(false);
 
   const { data } = useQuery({ queryKey: ['circle', id], queryFn: () => api.getCircle(id) });
+  const schedule = useQuery({
+    queryKey: ['schedule', id],
+    queryFn: () => api.circleSchedule(id),
+    enabled: !!data && data.circle.status !== 'FORMING' && data.circle.status !== 'DRAFT'
+  });
 
   const invalidate = () => {
     qc.invalidateQueries({ queryKey: ['circle', id] });
@@ -98,6 +103,22 @@ function CircleInner() {
           ))}
         </Card>
       </section>
+
+      {/* Payout order (rotation) for active/completed circles */}
+      {schedule.data && schedule.data.payouts.length > 0 && (
+        <section className="mt-8">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-400">{t('payoutOrder')}</h2>
+          <Card className="divide-y divide-slate-100 p-0">
+            {[...schedule.data.payouts].sort((a, b) => a.cycleIndex - b.cycleIndex).map((p) => (
+              <div key={p.id} className="flex items-center justify-between px-5 py-2.5 text-sm">
+                <span className="text-slate-500">{t('cycle')} {p.cycleIndex}</span>
+                <span className="font-medium">{money(p.amount)}</span>
+                <StatusBadge status={p.status} />
+              </div>
+            ))}
+          </Card>
+        </section>
+      )}
 
       {forming && !isMember && (
         <section className="mt-8 flex flex-col gap-4">

@@ -173,6 +173,8 @@
     "inviteShare": "Partagez ce code : {code}",
     "vouch": "Recommander",
     "vouched": "Recommandé ✓",
+    "payoutOrder": "Ordre des versements",
+    "cycle": "Cycle",
     "raiseDispute": "Signaler un litige",
     "disputeSubject": "Objet",
     "disputeBody": "Décrivez le problème",
