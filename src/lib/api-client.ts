@@ -181,6 +181,7 @@ export const api = {
   payObligation: (id: string) => apiFetch<{ ok: boolean }>(`/api/v1/me/obligations/${id}/pay`, { method: 'POST' }),
   myPayouts: () => apiFetch<PayoutView[]>('/api/v1/me/payouts'),
   myScore: () => apiFetch<ScoreResponse>('/api/v1/me/score'),
+  myScoreHistory: () => apiFetch<{ score: number; tier: string; at: string }[]>('/api/v1/me/score/history'),
 
   notifications: () =>
     apiFetch<{ id: string; type: string; message: string; read: boolean; at: string }[]>('/api/v1/me/notifications'),

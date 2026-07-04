@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { RequireAuth } from '@/components/RequireAuth';
 import { ScoreGauge } from '@/components/ScoreGauge';
+import { BarChart } from '@/components/BarChart';
 import { Button, Card, Container, Eyebrow, StatusBadge } from '@/components/ui';
 import { api } from '@/lib/api-client';
 
@@ -20,6 +21,7 @@ function DashboardInner() {
   const obligations = useQuery({ queryKey: ['obligations'], queryFn: api.myObligations });
   const payouts = useQuery({ queryKey: ['payouts'], queryFn: api.myPayouts });
   const vouches = useQuery({ queryKey: ['vouches'], queryFn: api.myVouches });
+  const history = useQuery({ queryKey: ['scoreHistory'], queryFn: api.myScoreHistory });
   const qc = useQueryClient();
   const pay = useMutation({
     mutationFn: (id: string) => api.payObligation(id),
@@ -69,6 +71,19 @@ function DashboardInner() {
           )}
         </Card>
       </div>
+
+      {/* Score trend */}
+      {(history.data?.length ?? 0) >= 2 && (
+        <Card className="mt-6">
+          <BarChart
+            title={t('scoreTrend')}
+            data={history.data!.map((p) => ({
+              label: new Date(p.at).toLocaleDateString(locale === 'darija' ? 'fr' : locale, { month: '2-digit', day: '2-digit' }),
+              count: p.score
+            }))}
+          />
+        </Card>
+      )}
 
       {/* Obligations list */}
       <section className="mt-8">

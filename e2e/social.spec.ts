@@ -24,6 +24,11 @@ test('vouches raise the vouchee credit score', async ({ request }) => {
 
   const after = (await (await request.get(`${API}/api/v1/me/score`, auth(vouchee.token))).json()).score;
   expect(after).toBeGreaterThan(before);
+
+  // The score change is recorded in history.
+  const history = await (await request.get(`${API}/api/v1/me/score/history`, auth(vouchee.token))).json();
+  expect(history.length).toBeGreaterThanOrEqual(2);
+  expect(history[history.length - 1].score).toBe(after);
 });
 
 test('invite-only circle requires a valid code', async ({ request }) => {
