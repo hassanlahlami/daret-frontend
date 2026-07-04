@@ -90,8 +90,14 @@
     "kyc": "التحقّق",
     "compliance": "الامتثال",
     "admin": "الإدارة",
+    "notifications": "الإشعارات",
     "login": "تسجيل الدخول",
     "logout": "تسجيل الخروج"
+  },
+  "Notifications": {
+    "title": "الإشعارات",
+    "empty": "لا توجد إشعارات.",
+    "markRead": "تعليم الكل كمقروء"
   },
   "Auth": {
     "loginTitle": "تسجيل الدخول",

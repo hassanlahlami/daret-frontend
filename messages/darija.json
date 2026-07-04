@@ -90,8 +90,14 @@
     "kyc": "KYC",
     "compliance": "Conformité",
     "admin": "Admin",
+    "notifications": "Ich3arat",
     "login": "Dkhol",
     "logout": "Khroj"
+  },
+  "Notifications": {
+    "title": "Ich3arat",
+    "empty": "Ma kaynin ich3arat.",
+    "markRead": "3allem kollchi m9ru"
   },
   "Auth": {
     "loginTitle": "Dkhol",

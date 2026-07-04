@@ -90,8 +90,14 @@
     "kyc": "KYC",
     "compliance": "Conformité",
     "admin": "Admin",
+    "notifications": "Notifications",
     "login": "Connexion",
     "logout": "Déconnexion"
+  },
+  "Notifications": {
+    "title": "Notifications",
+    "empty": "Aucune notification.",
+    "markRead": "Tout marquer comme lu"
   },
   "Auth": {
     "loginTitle": "Connexion",

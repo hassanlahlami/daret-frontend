@@ -173,6 +173,11 @@ export const api = {
   myPayouts: () => apiFetch<PayoutView[]>('/api/v1/me/payouts'),
   myScore: () => apiFetch<ScoreResponse>('/api/v1/me/score'),
 
+  notifications: () =>
+    apiFetch<{ id: string; type: string; message: string; read: boolean; at: string }[]>('/api/v1/me/notifications'),
+  unreadCount: () => apiFetch<{ unread: number }>('/api/v1/me/notifications/unread-count'),
+  markNotificationsRead: () => apiFetch<{ marked: number }>('/api/v1/me/notifications/read', { method: 'POST' }),
+
   auditChain: (limit = 100) => apiFetch<AuditEventView[]>(`/api/v1/admin/audit?limit=${limit}`),
   auditVerify: () => apiFetch<IntegrityReport>('/api/v1/admin/audit/verify'),
   kycQueue: () => apiFetch<{ userId: string; status: KycStatus }[]>('/api/v1/admin/compliance/kyc'),

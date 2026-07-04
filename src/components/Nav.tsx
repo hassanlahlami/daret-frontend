@@ -1,17 +1,22 @@
 'use client';
 
 import { Link, useRouter } from '@/i18n/navigation';
+import { useQuery } from '@tanstack/react-query';
 import { useSession } from '@/components/SessionProvider';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { LogoMark } from '@/components/LogoMark';
 import { buttonClass } from '@/components/ui';
 import { cn } from '@/lib/cn';
+import { api } from '@/lib/api-client';
 import { useTranslations } from 'next-intl';
 
 export function Nav() {
   const { session, hasRole, logout } = useSession();
   const t = useTranslations('Nav');
   const router = useRouter();
+  const { data: unread } = useQuery({
+    queryKey: ['unreadCount'], queryFn: api.unreadCount, enabled: !!session, refetchInterval: 30_000
+  });
 
   const linkClass = 'text-slate-600 transition hover:text-brand-700';
 
@@ -34,6 +39,14 @@ export function Nav() {
             {hasRole('ADMIN') && (
               <Link href="/admin" className={cn(linkClass, 'text-brand-700')}>{t('admin')}</Link>
             )}
+            <Link href="/notifications" className={cn(linkClass, 'inline-flex items-center gap-1')}>
+              {t('notifications')}
+              {(unread?.unread ?? 0) > 0 && (
+                <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-600 px-1 text-[10px] font-semibold text-white">
+                  {unread!.unread}
+                </span>
+              )}
+            </Link>
           </div>
         )}
 
