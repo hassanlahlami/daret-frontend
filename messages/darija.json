@@ -115,7 +115,19 @@
     "title": "Lindimam",
     "stepRegister": "Tsjil",
     "stepKyc": "Ta7qiq",
-    "stepDiscover": "Iktichaf"
+    "stepDiscover": "Iktichaf",
+    "getStarted": "L'khatwat lewwla",
+    "welcome": "Mer7ba bik f Daret",
+    "welcomeSub": "Tlata dyal l'khatwat bach tbda l'idikhar dyalek.",
+    "stepKycLabel": "T7eqqeq mn l'hawiya dyalek",
+    "stepKycHint": "Ta7qiq dyal KYC khassek qbel ma tdkhol l'dawra.",
+    "stepKycCta": "T7eqqeq",
+    "stepCircleLabel": "Dkhol l'awwel dawra",
+    "stepCircleHint": "Ktachef dowar meftou7in wla sawweb dawra dyalek.",
+    "stepCircleCta": "Ktachef",
+    "stepActiveLabel": "Fe33el d-dawra dyalek",
+    "stepActiveHint": "Mnin ytˤel3o l'blayes, d-dawra tbda w l'idikhar ybda.",
+    "stepActiveCta": "Chouf d-dowar"
   },
   "Kyc": {
     "title": "Ta7qiq dyal lhawiya (KYC)",
@@ -198,7 +210,15 @@
     "cycle": "Dawra",
     "amount": "Mablagh",
     "due": "Ajal",
-    "status": "7ala"
+    "status": "7ala",
+    "myCircles": "Dowar dyali",
+    "discoverLink": "Ktachef",
+    "emptyCirclesTitle": "Ma kayn 7tta dawra daba",
+    "emptyCirclesDesc": "Dkhol l'dawra meftou7a wla sawweb dyalek bach tbda l'idikhar.",
+    "emptyObligationsTitle": "Ma kayn 7tta mosahama jaya",
+    "emptyObligationsDesc": "L'ajalat dyalek ghadi ybano hna mnin tfe33el d-dawra.",
+    "emptyPayoutsTitle": "Ma kayn 7tta khlas daba",
+    "emptyPayoutsDesc": "Ndoba dyalek f l'khlas ghadi tban hna 7sab tartib d-dawra."
   },
   "Compliance": {
     "title": "Console dyal conformité",

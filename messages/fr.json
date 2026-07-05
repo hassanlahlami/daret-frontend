@@ -115,7 +115,19 @@
     "title": "Intégration",
     "stepRegister": "Inscription",
     "stepKyc": "Vérification",
-    "stepDiscover": "Découverte"
+    "stepDiscover": "Découverte",
+    "getStarted": "Premiers pas",
+    "welcome": "Bienvenue sur Daret",
+    "welcomeSub": "Trois étapes pour lancer votre première épargne tournante.",
+    "stepKycLabel": "Vérifiez votre identité",
+    "stepKycHint": "La vérification KYC est requise avant de rejoindre un cercle.",
+    "stepKycCta": "Vérifier",
+    "stepCircleLabel": "Rejoignez un premier cercle",
+    "stepCircleHint": "Découvrez les cercles ouverts ou créez le vôtre.",
+    "stepCircleCta": "Découvrir",
+    "stepActiveLabel": "Activez votre cercle",
+    "stepActiveHint": "Une fois les places remplies, le cercle démarre et l'épargne commence.",
+    "stepActiveCta": "Voir les cercles"
   },
   "Kyc": {
     "title": "Vérification d'identité (KYC)",
@@ -198,7 +210,15 @@
     "cycle": "Cycle",
     "amount": "Montant",
     "due": "Échéance",
-    "status": "Statut"
+    "status": "Statut",
+    "myCircles": "Mes cercles",
+    "discoverLink": "Découvrir",
+    "emptyCirclesTitle": "Aucun cercle pour l'instant",
+    "emptyCirclesDesc": "Rejoignez un cercle ouvert ou créez le vôtre pour commencer à épargner.",
+    "emptyObligationsTitle": "Aucune contribution à venir",
+    "emptyObligationsDesc": "Vos échéances apparaîtront ici une fois votre cercle actif.",
+    "emptyPayoutsTitle": "Aucun versement pour l'instant",
+    "emptyPayoutsDesc": "Votre tour de versement s'affichera ici selon l'ordre du cercle."
   },
   "Compliance": {
     "title": "Console de conformité",

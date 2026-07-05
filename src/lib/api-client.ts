@@ -139,6 +139,7 @@ export type AdminAnalytics = {
 export type PipelineResult = { collectionsIssued: number; payoutsIssued: number; eventsRelayed: number };
 export type SweepResult = { missedMarked: number; membersLate: number; membersDefaulted: number };
 
+export type MyCircleView = { id: string; name: string; status: string; filledSeats: number; seatCount: number };
 export type ErasureView = { id: string; reason: string | null; status: string; resolution: string | null; at: string };
 export type DataExport = {
   profile: { userId: string; email: string; phone: string | null; roles: string[]; enabled: boolean; createdAt: string };
@@ -191,6 +192,7 @@ export const api = {
       `/api/v1/circles/${id}/schedule`
     ),
 
+  myCircles: () => apiFetch<MyCircleView[]>('/api/v1/me/circles'),
   myObligations: () => apiFetch<ContributionView[]>('/api/v1/me/obligations'),
   payObligation: (id: string) => apiFetch<{ ok: boolean }>(`/api/v1/me/obligations/${id}/pay`, { method: 'POST' }),
   myPayouts: () => apiFetch<PayoutView[]>('/api/v1/me/payouts'),

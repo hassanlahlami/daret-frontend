@@ -115,7 +115,19 @@
     "title": "الانضمام",
     "stepRegister": "التسجيل",
     "stepKyc": "التحقّق",
-    "stepDiscover": "الاستكشاف"
+    "stepDiscover": "الاستكشاف",
+    "getStarted": "الخطوات الأولى",
+    "welcome": "مرحبًا بك في Daret",
+    "welcomeSub": "ثلاث خطوات لبدء أول ادّخار دوّار لك.",
+    "stepKycLabel": "تحقّق من هويتك",
+    "stepKycHint": "التحقّق من الهوية مطلوب قبل الانضمام إلى دائرة.",
+    "stepKycCta": "تحقّق",
+    "stepCircleLabel": "انضمّ إلى أول دائرة",
+    "stepCircleHint": "اكتشف الدوائر المفتوحة أو أنشئ دائرتك.",
+    "stepCircleCta": "استكشف",
+    "stepActiveLabel": "فعّل دائرتك",
+    "stepActiveHint": "بمجرد امتلاء المقاعد، تبدأ الدائرة ويبدأ الادّخار.",
+    "stepActiveCta": "عرض الدوائر"
   },
   "Kyc": {
     "title": "التحقّق من الهوية (KYC)",
@@ -198,7 +210,15 @@
     "cycle": "الدورة",
     "amount": "المبلغ",
     "due": "الاستحقاق",
-    "status": "الحالة"
+    "status": "الحالة",
+    "myCircles": "دوائري",
+    "discoverLink": "استكشف",
+    "emptyCirclesTitle": "لا توجد دوائر بعد",
+    "emptyCirclesDesc": "انضمّ إلى دائرة مفتوحة أو أنشئ دائرتك لتبدأ الادّخار.",
+    "emptyObligationsTitle": "لا مساهمات قادمة",
+    "emptyObligationsDesc": "ستظهر استحقاقاتك هنا بمجرد تفعيل دائرتك.",
+    "emptyPayoutsTitle": "لا مدفوعات بعد",
+    "emptyPayoutsDesc": "سيظهر دورك في الصرف هنا حسب ترتيب الدائرة."
   },
   "Compliance": {
     "title": "لوحة الامتثال",
