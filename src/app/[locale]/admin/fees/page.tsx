@@ -29,7 +29,8 @@ function FeesInner() {
     onError: (e) => setError(e instanceof ApiError ? e.message : 'error')
   });
 
-  const field = 'rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100';
+  const field = 'w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-100';
+  const fieldLabel = 'flex flex-col gap-1 text-xs text-slate-500';
 
   return (
     <Container className="max-w-4xl py-10">
@@ -52,23 +53,24 @@ function FeesInner() {
         <Card>
           <form onSubmit={(e) => { e.preventDefault(); setError(null); create.mutate(); }} className="flex flex-col gap-3">
             <input required placeholder={t('name')} value={name} onChange={(e) => setName(e.target.value)} className={field} />
-            <div className="grid grid-cols-3 gap-2">
-              <label className="text-xs text-slate-500">{t('serviceFee')}
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <label className={fieldLabel}>{t('serviceFee')}
                 <input type="number" step="0.01" value={serviceFee} onChange={(e) => setServiceFee(+e.target.value)} className={field} />
               </label>
-              <label className="text-xs text-slate-500">{t('baseFee')}
+              <label className={fieldLabel}>{t('baseFee')}
                 <input type="number" step="0.01" value={baseFee} onChange={(e) => setBaseFee(+e.target.value)} className={field} />
               </label>
-              <label className="text-xs text-slate-500">{t('redistributionShare')}
+              <label className={fieldLabel}>{t('redistributionShare')}
                 <input type="number" step="0.01" value={redistribution} onChange={(e) => setRedistribution(+e.target.value)} className={field} />
               </label>
             </div>
             <p className="text-xs text-slate-400">{t('tierMultipliers')}</p>
             <div className="grid grid-cols-5 gap-2">
               {TIERS.map((tier) => (
-                <label key={tier} className="text-xs text-slate-500">{tier}
+                <label key={tier} className={`${fieldLabel} items-center`}>{tier}
                   <input type="number" step="0.05" value={mult[tier]}
-                    onChange={(e) => setMult({ ...mult, [tier]: +e.target.value })} className={field} />
+                    onChange={(e) => setMult({ ...mult, [tier]: +e.target.value })}
+                    className={`${field} px-2 text-center`} />
                 </label>
               ))}
             </div>
