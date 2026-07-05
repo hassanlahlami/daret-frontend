@@ -11,8 +11,8 @@ type SessionContextValue = {
   session: Session;
   ready: boolean;
   hasRole: (role: string) => boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<Session>;
+  register: (email: string, password: string) => Promise<Session>;
   logout: () => void;
 };
 
@@ -36,13 +36,17 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(async (email: string, password: string) => {
     const t = await api.login(email, password);
     tokens.set(t.accessToken, t.refreshToken);
-    setSession(sessionFromToken());
+    const s = sessionFromToken();
+    setSession(s);
+    return s;
   }, []);
 
   const register = useCallback(async (email: string, password: string) => {
     const t = await api.register(email, password);
     tokens.set(t.accessToken, t.refreshToken);
-    setSession(sessionFromToken());
+    const s = sessionFromToken();
+    setSession(s);
+    return s;
   }, []);
 
   const logout = useCallback(() => {

@@ -30,3 +30,15 @@ test('a non-admin member is denied the admin console', async ({ page }) => {
   await page.goto('/fr/admin');
   await expect(page.getByRole('heading', { name: "Vue d'ensemble" })).toHaveCount(0);
 });
+
+test('an admin is redirected out of member features to the admin console', async ({ page }) => {
+  await uiLogin(page, 'admin@daret.demo');
+  // Member pages are off-limits to admins — each bounces to /admin.
+  for (const memberPath of ['/fr/dashboard', '/fr/circles', '/fr/kyc', '/fr/mes-donnees']) {
+    await page.goto(memberPath);
+    await page.waitForURL('**/fr/admin');
+    await expect(page.getByRole('heading', { name: "Vue d'ensemble" })).toBeVisible();
+  }
+  // And the member links are absent from the admin nav.
+  await expect(page.getByRole('link', { name: 'Tableau de bord' })).toHaveCount(0);
+});

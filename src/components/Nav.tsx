@@ -19,16 +19,27 @@ export function Nav() {
   });
 
   const linkClass = 'text-slate-600 transition hover:text-brand-700';
+  const isAdmin = hasRole('ADMIN');
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center gap-5 px-6 py-3 text-sm">
-        <Link href="/" className="flex items-center gap-2 font-bold text-brand-700">
+        <Link href={isAdmin ? '/admin' : '/'} className="flex items-center gap-2 font-bold text-brand-700">
           <LogoMark />
           <span className="text-base tracking-tight">Daret</span>
         </Link>
 
-        {session && (
+        {session && isAdmin && (
+          // Admins get a console-only nav — no access to member features.
+          <div className="hidden items-center gap-5 sm:flex">
+            <Link href="/admin" className={cn(linkClass, 'text-brand-700')}>{t('admin')}</Link>
+            {hasRole('COMPLIANCE_OFFICER') && (
+              <Link href="/compliance" className={cn(linkClass, 'text-brand-700')}>{t('compliance')}</Link>
+            )}
+          </div>
+        )}
+
+        {session && !isAdmin && (
           <div className="hidden items-center gap-5 sm:flex">
             <Link href="/circles" className={linkClass}>{t('discover')}</Link>
             <Link href="/dashboard" className={linkClass}>{t('dashboard')}</Link>
@@ -36,9 +47,6 @@ export function Nav() {
             <Link href="/mes-donnees" className={linkClass}>{t('dataRights')}</Link>
             {hasRole('COMPLIANCE_OFFICER') && (
               <Link href="/compliance" className={cn(linkClass, 'text-brand-700')}>{t('compliance')}</Link>
-            )}
-            {hasRole('ADMIN') && (
-              <Link href="/admin" className={cn(linkClass, 'text-brand-700')}>{t('admin')}</Link>
             )}
             <Link href="/notifications" className={cn(linkClass, 'inline-flex items-center gap-1')}>
               {t('notifications')}

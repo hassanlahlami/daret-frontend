@@ -21,8 +21,9 @@ export default function LoginPage() {
     setError(false);
     setBusy(true);
     try {
-      await login(email, password);
-      router.replace('/circles');
+      const s = await login(email, password);
+      // Admins are routed to their console and kept out of the member area.
+      router.replace(s?.roles.includes('ADMIN') ? '/admin' : '/circles');
     } catch {
       setError(true);
     } finally {

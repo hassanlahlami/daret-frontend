@@ -11,13 +11,13 @@ export function jwtSub(token: string): string {
   return JSON.parse(Buffer.from(payload, 'base64').toString()).sub;
 }
 
-/** Log in through the UI (French locale) and wait for the discover page. */
+/** Log in through the UI (French locale). Members land on /circles, admins on /admin. */
 export async function uiLogin(page: Page, email: string, password = DEMO_PASSWORD) {
   await page.goto('/fr/login');
   await page.getByPlaceholder('E-mail').fill(email);
   await page.getByPlaceholder('Mot de passe').fill(password);
   await page.getByRole('button', { name: 'Se connecter' }).click();
-  await page.waitForURL('**/fr/circles');
+  await page.waitForURL(/\/fr\/(circles|admin)/);
 }
 
 // ---- Backend API helpers (for arranging money-flow state) ----
