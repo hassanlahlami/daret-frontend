@@ -26,7 +26,8 @@ test('admin sees the overview KPIs and can browse circles/users/ops', async ({ p
 
   await page.goto('/fr/admin/croissance');
   await expect(page.getByRole('heading', { name: 'Croissance & revenus' })).toBeVisible();
-  await expect(page.getByText("Liste d'attente")).toBeVisible();
+  // Exact match: the empty-state text also contains "liste d'attente".
+  await expect(page.getByText("Liste d'attente", { exact: true })).toBeVisible();
 });
 
 test('a non-admin member is denied the admin console', async ({ page }) => {

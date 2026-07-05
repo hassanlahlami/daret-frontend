@@ -12,7 +12,7 @@ function ComplianceInner() {
   const t = useTranslations('Compliance');
   const qc = useQueryClient();
 
-  const chain = useQuery({ queryKey: ['audit'], queryFn: () => api.auditChain(50) });
+  const chain = useQuery({ queryKey: ['audit'], queryFn: () => api.auditChain(200) });
   const integrity = useQuery({ queryKey: ['audit', 'verify'], queryFn: api.auditVerify });
   const queue = useQuery({ queryKey: ['kycQueue'], queryFn: api.kycQueue });
   const flags = useQuery({ queryKey: ['aml'], queryFn: api.amlFlags });
