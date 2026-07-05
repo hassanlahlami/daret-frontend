@@ -12,7 +12,8 @@ avec RTL soigné.
 &nbsp;![Next.js](https://img.shields.io/badge/Next.js-14-black)
 &nbsp;![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
 &nbsp;![Tailwind](https://img.shields.io/badge/Tailwind-3-38BDF8)
-&nbsp;![E2E](https://img.shields.io/badge/E2E-Playwright%208%2F8-2EAD33)
+&nbsp;![E2E](https://img.shields.io/badge/E2E-Playwright%2019%2F19-2EAD33)
+&nbsp;![Release](https://img.shields.io/badge/release-1.0.0--rc-blue)
 
 ![Daret — landing](./docs/img/landing.png)
 
