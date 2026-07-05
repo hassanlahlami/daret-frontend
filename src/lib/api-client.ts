@@ -162,6 +162,11 @@ export const api = {
   register: (email: string, password: string) =>
     apiFetch<TokenResponse>('/api/v1/auth/register', { body: { email, password }, auth: false }),
 
+  joinWaitlist: (email: string, locale: string) =>
+    apiFetch<{ ok: boolean; added: boolean }>('/api/v1/waitlist', { body: { email, locale }, auth: false }),
+  adminWaitlist: () =>
+    apiFetch<{ count: number; entries: { email: string; locale: string; at: string }[] }>('/api/v1/waitlist'),
+
   getKyc: () => apiFetch<KycStatusResponse>('/api/v1/kyc'),
   submitKyc: (partnerRef: string, consent: boolean) =>
     apiFetch<KycStatusResponse>('/api/v1/kyc', { body: { partnerRef, consent } }),

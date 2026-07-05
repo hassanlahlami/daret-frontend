@@ -12,10 +12,29 @@ import '@/app/globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://daret.ma';
+
 export const metadata: Metadata = {
-  title: 'Daret — épargne tournante digitale',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Daret — épargne tournante digitale',
+    template: '%s · Daret'
+  },
   description:
     'Digitalise la daret marocaine (ROSCA) : mise en relation, scoring, planification et confiance. Les fonds transitent par un partenaire de paiement agréé — la plateforme ne détient jamais votre argent.',
+  keywords: ['daret', 'tontine', 'ROSCA', 'épargne tournante', 'Maroc', 'darija', 'cercle d’épargne', 'fintech'],
+  openGraph: {
+    type: 'website',
+    siteName: 'Daret',
+    title: 'Daret — épargne tournante digitale',
+    description:
+      'La daret marocaine, digitale et de confiance : cercles, scoring, planification. Les fonds transitent par un partenaire de paiement agréé.'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Daret — épargne tournante digitale',
+    description: 'La daret marocaine, digitale et de confiance.'
+  },
   manifest: '/manifest.webmanifest',
   applicationName: 'Daret',
   appleWebApp: { capable: true, statusBarStyle: 'default', title: 'Daret' },

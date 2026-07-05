@@ -51,11 +51,51 @@
     "c4": "CNDP / 9anon 09-08 — PII m3allma w m9anna3a b default",
     "ctaTitle": "Wajed bach ttlaq daret dyalek?",
     "ctaBody": "Sawb 7sab, kmmel lverification, w tlaq lewwel group f chi d9aye9.",
+    "ctaButton": "Sawb 7sab dyali",
+    "ctaPricing": "Chouf ttaman",
+    "waitlistEyebrow": "9ariban",
+    "waitlistTitle": "Dkhol l list dyal lintidar",
+    "waitlistBody": "Kon lewwel li y3ref b lancement w jdid. Bla spam, w tqder tkhroj b clic."
+  },
+  "Waitlist": {
+    "placeholder": "Email dyalek",
+    "cta": "Sjjelni",
+    "thanks": "Choukran! Rak f list — ghadi n7etto m3ak.",
+    "error": "Email machi s7i7. 3awd."
+  },
+  "Pricing": {
+    "eyebrow": "Ttaman",
+    "title": "Basit w chaffaf",
+    "subtitle": "Lmocharaka b'blach. Platforme katrbe7 ghir mn frais dyal khidma chaffafa — 3omor bla fa2ida, w 3omor ma kat7tafed b flousek.",
+    "popular": "Mechhour",
+    "memberName": "3odw",
+    "memberTag": "Bach twffer f dawra",
+    "memberPrice": "B'blach",
+    "memberFeatures": ["Dkhol l dowar meftou7in", "Khelles w tsellem b aman", "Score dyal crédit w tawsiyat", "Frais dyal khidma chaffafa f kol dawra"],
+    "memberCta": "Bda",
+    "organizerName": "Monaddim",
+    "organizerTag": "Bach ttlaq dowar dyalek",
+    "organizerPrice": "B'blach",
+    "organizerFeatures": ["Sawb w dabber dowar", "Dowar khassin b da3wa", "Tetbe3 dyal lkhlas w t2akhor", "Tartib dyal lkhlas otomatik"],
+    "organizerCta": "Sawb dawra",
+    "businessName": "Charika / Groupe",
+    "businessTag": "L les équipes w jam3iyat",
+    "businessPrice": "3la l7sab",
+    "businessFeatures": ["Dowar l les équipes w jam3iyat", "Support khass w reporting", "Options dyal conformité mtqddma"],
+    "businessCta": "Twasel m3ana",
+    "feeEyebrow": "Kifach katrbe7",
+    "feeTitle": "Frais wad7in, bla fa2ida",
+    "feeBody": "Mode Sharia mfe33el b default: dawaran khaless. Ghir frais dyal khidma chaffafa, m3rofin mn qbel b l'aperçu dyal frais.",
+    "feePoints": ["Platforme 3omorha ma kat7tafed b flousek", "Aperçu dyal frais qbel ma tdkhol l dawra", "Bla frais khafiyin wla fa2ida", "Reçus w historique mtofrin"],
+    "ctaEyebrow": "9ariban",
+    "ctaTitle": "Baghi tbda?",
+    "ctaBody": "Dkhol l list dyal lintidar wla sawb 7sab dyalek daba.",
     "ctaButton": "Sawb 7sab dyali"
   },
   "Footer": {
     "disclaimer": "Platforme dyal tansi9 w ttiqa — lflous katduz 3la chrik dyal lkhlas mrakhkhas. Wathi9a te9niya; verifi n9at tandimiya m3a mustachar maghribi.",
-    "security": "Aman w conformité"
+    "security": "Aman w conformité",
+    "pricing": "Ttaman"
   },
   "Security": {
     "eyebrow": "Aman w conformité",

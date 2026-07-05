@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { Badge, buttonClass, Card, Container, Eyebrow } from '@/components/ui';
 import { IconArrow, IconChart, IconCoins, IconLock, IconShield } from '@/components/Icons';
 import { HealthStatus } from '@/components/HealthStatus';
+import { WaitlistForm } from '@/components/WaitlistForm';
 
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale);
@@ -139,14 +140,27 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
         </Container>
       </section>
 
+      {/* Waitlist */}
+      <Container className="py-16">
+        <Card className="mx-auto max-w-2xl text-center shadow-glow">
+          <Eyebrow>{t('waitlistEyebrow')}</Eyebrow>
+          <h2 className="mt-2 text-2xl font-bold text-slate-900">{t('waitlistTitle')}</h2>
+          <p className="mx-auto mt-2 max-w-md text-sm text-slate-600">{t('waitlistBody')}</p>
+          <div className="mt-6">
+            <WaitlistForm />
+          </div>
+        </Card>
+      </Container>
+
       {/* Final CTA */}
       <Container className="py-20 text-center">
         <h2 className="text-3xl font-bold text-slate-900">{t('ctaTitle')}</h2>
         <p className="mx-auto mt-3 max-w-xl text-slate-600">{t('ctaBody')}</p>
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link href="/register" className={buttonClass('primary', 'lg')}>
             {t('ctaButton')} <IconArrow className="h-4 w-4 rtl:rotate-180" />
           </Link>
+          <Link href="/tarifs" className={buttonClass('outline', 'lg')}>{t('ctaPricing')}</Link>
         </div>
       </Container>
     </div>

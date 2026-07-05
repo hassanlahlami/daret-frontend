@@ -13,6 +13,7 @@ export function Footer() {
         </div>
         <p className="max-w-md">{t('disclaimer')}</p>
         <div className="flex items-center gap-4">
+          <Link href="/tarifs" className="text-brand-700 hover:underline">{t('pricing')}</Link>
           <Link href="/securite" className="text-brand-700 hover:underline">{t('security')}</Link>
           <span className="text-xs text-slate-400">© {new Date().getFullYear()} Daret</span>
         </div>

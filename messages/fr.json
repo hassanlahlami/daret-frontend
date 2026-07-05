@@ -51,11 +51,51 @@
     "c4": "CNDP / Loi 09-08 — PII marquées et masquées par défaut",
     "ctaTitle": "Prêt à lancer votre daret ?",
     "ctaBody": "Créez un compte, complétez votre vérification et lancez votre premier cercle en quelques minutes.",
+    "ctaButton": "Créer mon compte",
+    "ctaPricing": "Voir les tarifs",
+    "waitlistEyebrow": "Bientôt",
+    "waitlistTitle": "Rejoignez la liste d'attente",
+    "waitlistBody": "Soyez prévenu·e du lancement et des nouveautés. Pas de spam, désinscription en un clic."
+  },
+  "Waitlist": {
+    "placeholder": "Votre e-mail",
+    "cta": "M'inscrire",
+    "thanks": "Merci ! Vous êtes sur la liste — on vous tient au courant.",
+    "error": "Adresse e-mail invalide. Réessayez."
+  },
+  "Pricing": {
+    "eyebrow": "Tarifs",
+    "title": "Simple et transparent",
+    "subtitle": "Participer est gratuit. La plateforme se rémunère uniquement via des frais de service transparents — jamais d'intérêt, jamais de détention de vos fonds.",
+    "popular": "Populaire",
+    "memberName": "Membre",
+    "memberTag": "Pour épargner en cercle",
+    "memberPrice": "Gratuit",
+    "memberFeatures": ["Rejoindre des cercles ouverts", "Payer et recevoir en toute sécurité", "Score de crédit et recommandations", "Frais de service transparents par cycle"],
+    "memberCta": "Commencer",
+    "organizerName": "Organisateur",
+    "organizerTag": "Pour lancer vos cercles",
+    "organizerPrice": "Gratuit",
+    "organizerFeatures": ["Créer et gérer des cercles", "Cercles privés sur invitation", "Suivi des versements et des retards", "Ordre de rotation automatique"],
+    "organizerCta": "Créer un cercle",
+    "businessName": "Entreprise / Groupe",
+    "businessTag": "Pour équipes et associations",
+    "businessPrice": "Sur mesure",
+    "businessFeatures": ["Cercles pour équipes et associations", "Support dédié et reporting", "Options de conformité avancées"],
+    "businessCta": "Nous contacter",
+    "feeEyebrow": "Comment on se rémunère",
+    "feeTitle": "Des frais clairs, jamais d'intérêt",
+    "feeBody": "Le mode Sharia est activé par défaut : rotation pure. Seuls s'appliquent des frais de service transparents, connus à l'avance grâce à l'aperçu des frais.",
+    "feePoints": ["La plateforme ne détient jamais vos fonds", "Aperçu des frais avant de rejoindre un cercle", "Aucun frais caché ni intérêt", "Reçus et historique disponibles"],
+    "ctaEyebrow": "Bientôt",
+    "ctaTitle": "Envie de commencer ?",
+    "ctaBody": "Rejoignez la liste d'attente ou créez votre compte dès maintenant.",
     "ctaButton": "Créer mon compte"
   },
   "Footer": {
     "disclaimer": "Plateforme de coordination et de confiance — les fonds transitent par un partenaire de paiement agréé. Document produit ; valider les points réglementaires avec un conseil marocain.",
-    "security": "Sécurité & conformité"
+    "security": "Sécurité & conformité",
+    "pricing": "Tarifs"
   },
   "Security": {
     "eyebrow": "Sécurité & conformité",
