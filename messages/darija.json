@@ -127,6 +127,7 @@
   "Nav": {
     "discover": "Ktachef",
     "dashboard": "Tableau de bord",
+    "receipts": "Recus",
     "kyc": "KYC",
     "dataRights": "Data dyali",
     "compliance": "Conformité",
@@ -140,6 +141,17 @@
     "title": "Ich3arat",
     "empty": "Ma kaynin ich3arat.",
     "markRead": "3allem kollchi m9ru"
+  },
+  "Receipts": {
+    "eyebrow": "Facturation",
+    "title": "Recus dyali",
+    "print": "Tbe3",
+    "emptyTitle": "Ma kaynin recus daba",
+    "emptyDesc": "Recus dyal lmosahamat w lkhlas ghadi ybano hna mnin ytkhelso.",
+    "contribution": "Recu dyal mosahama",
+    "payout": "Khlas mestlem",
+    "cycle": "Dawra",
+    "note": "Lflous katduz 3la chrik dyal lkhlas mrakhkhas. Daret 3omorha ma kat7tafed b flousek."
   },
   "Auth": {
     "loginTitle": "Dkhol",

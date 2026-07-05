@@ -127,6 +127,7 @@
   "Nav": {
     "discover": "Découvrir",
     "dashboard": "Tableau de bord",
+    "receipts": "Reçus",
     "kyc": "KYC",
     "dataRights": "Mes données",
     "compliance": "Conformité",
@@ -140,6 +141,17 @@
     "title": "Notifications",
     "empty": "Aucune notification.",
     "markRead": "Tout marquer comme lu"
+  },
+  "Receipts": {
+    "eyebrow": "Facturation",
+    "title": "Mes reçus",
+    "print": "Imprimer",
+    "emptyTitle": "Aucun reçu pour l'instant",
+    "emptyDesc": "Vos reçus de contributions et de versements apparaîtront ici une fois réglés.",
+    "contribution": "Reçu de contribution",
+    "payout": "Versement reçu",
+    "cycle": "Cycle",
+    "note": "Les fonds transitent par un partenaire de paiement agréé. Daret ne détient jamais votre argent."
   },
   "Auth": {
     "loginTitle": "Connexion",
@@ -268,7 +280,7 @@
     "valid": "Chaîne intègre ({n} événements)",
     "invalid": "Rupture détectée à la séquence {seq}",
     "kycQueue": "File d'attente KYC",
-    "approve": "Vérifier",
+    "approve": "Approuver",
     "reject": "Rejeter",
     "aml": "Signalements AML",
     "noAml": "Aucun signalement.",

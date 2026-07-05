@@ -68,3 +68,9 @@
     background-size: 22px 22px;
   }
 }
+
+/* Print: strip chrome so receipts/statements print cleanly. */
+@media print {
+  header, footer, [data-noprint] { display: none !important; }
+  body { background: #fff !important; }
+}
