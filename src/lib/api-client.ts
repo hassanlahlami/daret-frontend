@@ -139,6 +139,20 @@ export type AdminAnalytics = {
 export type PipelineResult = { collectionsIssued: number; payoutsIssued: number; eventsRelayed: number };
 export type SweepResult = { missedMarked: number; membersLate: number; membersDefaulted: number };
 
+export type ErasureView = { id: string; reason: string | null; status: string; resolution: string | null; at: string };
+export type DataExport = {
+  profile: { userId: string; email: string; phone: string | null; roles: string[]; enabled: boolean; createdAt: string };
+  kyc: { status: string; partnerRef: string | null; consentedAt: string | null };
+  score: { score: number; tier: string };
+  memberships: { circleId: string; circleName: string | null; slotPreference: string; slotPosition: number | null; standing: string }[];
+  contributions: { circleId: string; cycleIndex: number; amount: number; dueDate: string; status: string }[];
+  payouts: { circleId: string; cycleIndex: number; amount: number; status: string }[];
+  ledgerBalance: number;
+  vouchesReceived: number;
+  disputes: { circleId: string | null; subject: string; status: string; at: string }[];
+  generatedAt: string;
+};
+
 // ---- Endpoints ----
 
 export const api = {
@@ -196,6 +210,20 @@ export const api = {
     ),
   resolveDispute: (id: string, resolution: string) =>
     apiFetch<{ id: string; status: string }>(`/api/v1/admin/compliance/disputes/${id}/resolve`, { body: { resolution } }),
+
+  // ---- CNDP data rights (F1) ----
+  dataExport: () => apiFetch<DataExport>('/api/v1/me/data-export'),
+  requestErasure: (reason: string) =>
+    apiFetch<ErasureView>('/api/v1/me/erasure-request', { body: { reason } }),
+  myErasureRequests: () => apiFetch<ErasureView[]>('/api/v1/me/erasure-requests'),
+  complianceErasureRequests: () =>
+    apiFetch<{ id: string; userId: string; reason: string | null; status: string; resolution: string | null }[]>(
+      '/api/v1/admin/compliance/erasure-requests'
+    ),
+  resolveErasure: (id: string, approved: boolean, resolution: string) =>
+    apiFetch<{ id: string; status: string }>(`/api/v1/admin/compliance/erasure-requests/${id}/resolve`, {
+      body: { approved, resolution }
+    }),
 
   auditChain: (limit = 100) => apiFetch<AuditEventView[]>(`/api/v1/admin/audit?limit=${limit}`),
   auditVerify: () => apiFetch<IntegrityReport>('/api/v1/admin/audit/verify'),

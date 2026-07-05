@@ -22,6 +22,13 @@ function ComplianceInner() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['disputes'] })
   });
 
+  const erasures = useQuery({ queryKey: ['erasures'], queryFn: api.complianceErasureRequests });
+  const resolveErasure = useMutation({
+    mutationFn: ({ id, approved }: { id: string; approved: boolean }) =>
+      api.resolveErasure(id, approved, approved ? 'Approved by compliance' : 'Retained: active obligations'),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['erasures'] })
+  });
+
   const decide = useMutation({
     mutationFn: ({ userId, decision }: { userId: string; decision: KycStatus }) =>
       api.decideKyc(userId, decision),
@@ -108,6 +115,30 @@ function ComplianceInner() {
             ))}
           </Card>
         ) : <p className="text-sm text-slate-500">{t('noDisputes')}</p>}
+      </section>
+
+      {/* Erasure requests (CNDP right to erasure) */}
+      <section className="mt-8">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">{t('erasures')}</h2>
+        {erasures.data?.length ? (
+          <Card className="divide-y divide-slate-100 p-0">
+            {erasures.data.map((r) => (
+              <div key={r.id} className="flex items-center justify-between px-5 py-3 text-sm">
+                <div>
+                  <span className="font-mono text-xs text-slate-500">{r.userId.slice(0, 8)}</span>
+                  {r.reason && <p className="text-xs text-slate-500">{r.reason}</p>}
+                </div>
+                <span className="flex gap-2">
+                  <Button size="sm" onClick={() => resolveErasure.mutate({ id: r.id, approved: true })}
+                    disabled={resolveErasure.isPending}>{t('approve')}</Button>
+                  <Button size="sm" variant="ghost" className="text-red-600"
+                    onClick={() => resolveErasure.mutate({ id: r.id, approved: false })}
+                    disabled={resolveErasure.isPending}>{t('reject')}</Button>
+                </span>
+              </div>
+            ))}
+          </Card>
+        ) : <p className="text-sm text-slate-500">{t('noErasures')}</p>}
       </section>
 
       {/* Audit chain */}

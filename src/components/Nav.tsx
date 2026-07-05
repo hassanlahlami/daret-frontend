@@ -33,6 +33,7 @@ export function Nav() {
             <Link href="/circles" className={linkClass}>{t('discover')}</Link>
             <Link href="/dashboard" className={linkClass}>{t('dashboard')}</Link>
             <Link href="/kyc" className={linkClass}>{t('kyc')}</Link>
+            <Link href="/mes-donnees" className={linkClass}>{t('dataRights')}</Link>
             {hasRole('COMPLIANCE_OFFICER') && (
               <Link href="/compliance" className={cn(linkClass, 'text-brand-700')}>{t('compliance')}</Link>
             )}
