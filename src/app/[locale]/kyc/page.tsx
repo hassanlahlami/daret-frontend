@@ -21,6 +21,10 @@ function KycInner() {
     mutationFn: () => api.submitKyc(partnerRef, consent),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['kyc'] })
   });
+  const initiate = useMutation({
+    mutationFn: api.initiateKyc,
+    onSuccess: (s) => setPartnerRef(s.partnerRef)
+  });
 
   const field =
     'rounded-xl border border-slate-300 px-3 py-2.5 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100';
@@ -47,6 +51,14 @@ function KycInner() {
           onSubmit={(e) => { e.preventDefault(); if (consent) submit.mutate(); }}
           className="flex flex-col gap-4"
         >
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-sm text-slate-500">{t('initiateHint')}</span>
+            <Button type="button" variant="outline" size="sm"
+              onClick={() => initiate.mutate()} disabled={initiate.isPending}>
+              {t('initiate')}
+            </Button>
+          </div>
+
           <label className="flex flex-col gap-1.5 text-sm font-medium text-slate-700">
             {t('partnerRef')}
             <input required placeholder={t('partnerRefHint')} value={partnerRef}

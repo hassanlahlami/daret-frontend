@@ -169,6 +169,8 @@ export const api = {
     apiFetch<{ count: number; entries: { email: string; locale: string; at: string }[] }>('/api/v1/waitlist'),
 
   getKyc: () => apiFetch<KycStatusResponse>('/api/v1/kyc'),
+  initiateKyc: () =>
+    apiFetch<{ partnerRef: string; redirectUrl: string; status: string }>('/api/v1/kyc/initiate', { method: 'POST' }),
   submitKyc: (partnerRef: string, consent: boolean) =>
     apiFetch<KycStatusResponse>('/api/v1/kyc', { body: { partnerRef, consent } }),
 
