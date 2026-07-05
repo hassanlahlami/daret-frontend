@@ -152,7 +152,7 @@ function CircleInner() {
       {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
 
       {/* Raise a dispute */}
-      <details className="mt-8 rounded-xl border border-slate-200 bg-white p-4 text-sm">
+      <details className="mt-8 rounded-xl border border-slate-200 bg-surface p-4 text-sm">
         <summary className="cursor-pointer font-medium text-slate-700">{t('raiseDispute')}</summary>
         {disputeSent ? (
           <p className="mt-3 text-emerald-600">{t('disputeSent')}</p>

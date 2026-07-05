@@ -76,7 +76,7 @@ export default function SecurityPage({ params: { locale } }: { params: { locale:
         <h2 className="mb-4 text-lg font-semibold text-slate-900">{t('refTitle')}</h2>
         <ul className="grid gap-2 sm:grid-cols-2">
           {refs.map((r, i) => (
-            <li key={i} className="flex items-start gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+            <li key={i} className="flex items-start gap-2 rounded-xl border border-slate-200 bg-surface px-4 py-3 text-sm text-slate-600">
               <IconShield className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
               {r}
             </li>

@@ -32,7 +32,7 @@ export function FeePreviewSlider({ circleId, seatCount }: Props) {
   });
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-white p-5">
+    <div className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-surface p-5">
       <label className="flex flex-col gap-2">
         <span className="text-sm font-medium">{t('position', { position, seatCount })}</span>
         <input

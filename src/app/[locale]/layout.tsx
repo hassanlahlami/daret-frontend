@@ -35,9 +35,15 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const themeInit =
+    "(function(){try{var t=localStorage.getItem('theme');" +
+    "var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches);" +
+    "document.documentElement.classList.toggle('dark',d);}catch(e){}})();";
+
   return (
-    <html lang={locale} dir={dirFor(locale)} className={inter.variable}>
+    <html lang={locale} dir={dirFor(locale)} className={inter.variable} suppressHydrationWarning>
       <body className="font-sans">
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <div className="flex min-h-screen flex-col">

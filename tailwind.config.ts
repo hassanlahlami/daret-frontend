@@ -8,6 +8,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Neutral scale driven by CSS variables so the whole app flips
+        // light/dark without per-component `dark:` variants. Light values in
+        // :root are identical to Tailwind slate (no regression); .dark inverts.
+        slate: {
+          50: 'rgb(var(--s-50) / <alpha-value>)',
+          100: 'rgb(var(--s-100) / <alpha-value>)',
+          200: 'rgb(var(--s-200) / <alpha-value>)',
+          300: 'rgb(var(--s-300) / <alpha-value>)',
+          400: 'rgb(var(--s-400) / <alpha-value>)',
+          500: 'rgb(var(--s-500) / <alpha-value>)',
+          600: 'rgb(var(--s-600) / <alpha-value>)',
+          700: 'rgb(var(--s-700) / <alpha-value>)',
+          800: 'rgb(var(--s-800) / <alpha-value>)',
+          900: 'rgb(var(--s-900) / <alpha-value>)'
+        },
+        // Elevated surface (cards, nav, inputs): white in light, slate-800 in dark.
+        surface: 'rgb(var(--surface) / <alpha-value>)',
         brand: {
           50: '#effcf6',
           100: '#d3f5e5',

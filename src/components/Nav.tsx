@@ -4,6 +4,7 @@ import { Link, useRouter } from '@/i18n/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from '@/components/SessionProvider';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { LogoMark } from '@/components/LogoMark';
 import { buttonClass } from '@/components/ui';
 import { cn } from '@/lib/cn';
@@ -22,7 +23,7 @@ export function Nav() {
   const isAdmin = hasRole('ADMIN');
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-surface/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center gap-5 px-6 py-3 text-sm">
         <Link href={isAdmin ? '/admin' : '/'} className="flex items-center gap-2 font-bold text-brand-700">
           <LogoMark />
@@ -60,6 +61,7 @@ export function Nav() {
         )}
 
         <div className="ms-auto flex items-center gap-3">
+          <ThemeToggle />
           <LocaleSwitcher />
           {session ? (
             <button

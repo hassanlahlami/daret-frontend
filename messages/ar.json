@@ -93,7 +93,8 @@
     "admin": "الإدارة",
     "notifications": "الإشعارات",
     "login": "تسجيل الدخول",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "theme": "المظهر"
   },
   "Notifications": {
     "title": "الإشعارات",

@@ -24,7 +24,7 @@ export function buttonClass(variant: Variant = 'primary', size: Size = 'md', cla
   const variants: Record<Variant, string> = {
     primary: 'bg-brand-600 text-white shadow-soft hover:bg-brand-700',
     accent: 'bg-accent-400 text-accent-900 shadow-soft hover:bg-accent-300',
-    outline: 'border border-slate-300 bg-white text-slate-800 hover:border-brand-400 hover:text-brand-700',
+    outline: 'border border-slate-300 bg-surface text-slate-800 hover:border-brand-400 hover:text-brand-700',
     ghost: 'text-slate-700 hover:bg-slate-100'
   };
   return cn(base, sizes[size], variants[variant], className);
@@ -43,7 +43,7 @@ export function Button({
 
 export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
   return (
-    <div className={cn('rounded-2xl border border-slate-200 bg-white p-6 shadow-soft', className)}>
+    <div className={cn('rounded-2xl border border-slate-200 bg-surface p-6 shadow-soft', className)}>
       {children}
     </div>
   );

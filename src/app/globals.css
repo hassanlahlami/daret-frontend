@@ -4,6 +4,35 @@
 
 :root {
   color-scheme: light;
+  /* Neutral ramp (light) — identical to Tailwind slate. */
+  --s-50: 248 250 252;
+  --s-100: 241 245 249;
+  --s-200: 226 232 240;
+  --s-300: 203 213 225;
+  --s-400: 148 163 184;
+  --s-500: 100 116 139;
+  --s-600: 71 85 105;
+  --s-700: 51 65 85;
+  --s-800: 30 41 59;
+  --s-900: 15 23 42;
+  --surface: 255 255 255;
+}
+
+.dark {
+  color-scheme: dark;
+  /* Neutral ramp (dark): backgrounds darken, text lightens. Elevation ladder
+     body #0f172a  <  surface #1e293b  <  fill --s-100. */
+  --s-50: 15 23 42;      /* page background */
+  --s-100: 39 50 68;     /* subtle fills, hovers, dividers */
+  --s-200: 51 65 85;     /* borders */
+  --s-300: 71 85 105;    /* input borders / stronger lines */
+  --s-400: 113 128 150;  /* faint text */
+  --s-500: 148 163 184;  /* muted text */
+  --s-600: 176 190 210;  /* body text */
+  --s-700: 203 213 225;  /* labels */
+  --s-800: 226 232 240;  /* strong text */
+  --s-900: 241 245 249;  /* headings */
+  --surface: 30 41 59;   /* cards, nav, inputs */
 }
 
 @layer base {
@@ -21,6 +50,15 @@
   h1, h2, h3 {
     @apply tracking-tight;
   }
+
+  /* Standalone brand/semantic text lacks contrast on dark surfaces — lift it. */
+  .dark .text-brand-600 { color: theme('colors.brand.300'); }
+  .dark .text-brand-700 { color: theme('colors.brand.300'); }
+  .dark .text-brand-800 { color: theme('colors.brand.200'); }
+  .dark .text-emerald-600 { color: theme('colors.emerald.400'); }
+  .dark .text-emerald-700 { color: theme('colors.emerald.400'); }
+  .dark .text-red-500 { color: theme('colors.red.400'); }
+  .dark .text-red-600 { color: theme('colors.red.400'); }
 }
 
 @layer components {

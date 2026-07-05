@@ -25,7 +25,7 @@ export function HealthStatus() {
       : t('healthUp');
 
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3">
+    <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-surface px-4 py-3">
       <span className={`inline-block h-3 w-3 rounded-full ${dotClass}`} aria-hidden />
       <span className="text-sm font-medium">{label}</span>
       {data?.time && (

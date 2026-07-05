@@ -93,7 +93,8 @@
     "admin": "Admin",
     "notifications": "Notifications",
     "login": "Connexion",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "theme": "Thème"
   },
   "Notifications": {
     "title": "Notifications",

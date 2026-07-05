@@ -93,7 +93,8 @@
     "admin": "Admin",
     "notifications": "Ich3arat",
     "login": "Dkhol",
-    "logout": "Khroj"
+    "logout": "Khroj",
+    "theme": "Thème"
   },
   "Notifications": {
     "title": "Ich3arat",

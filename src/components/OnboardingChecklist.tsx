@@ -19,7 +19,7 @@ export function OnboardingChecklist({ steps }: { steps: OnboardingStep[] }) {
   const pct = Math.round((done / steps.length) * 100);
 
   return (
-    <Card className="mb-6 border-brand-100 bg-gradient-to-b from-brand-50/60 to-white">
+    <Card className="mb-6 border-brand-100 bg-gradient-to-b from-brand-50/60 to-surface">
       <div className="flex items-start justify-between gap-4">
         <div>
           <Eyebrow>{t('getStarted')}</Eyebrow>
